@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://bglmr1g51dgqu"]
+
+[ext_resource type="Script" uid="uid://cftoc115vf4j7" path="res://playerMaze.gd" id="1_rvslj"]
+[ext_resource type="Texture2D" uid="uid://cdw0n1roccd3w" path="res://assets/puzzles/player_icon.png" id="2_0bbpv"]
+[ext_resource type="PackedScene" path="res://SpringWater.tscn" id="3_0bbpv"]
+[ext_resource type="PackedScene" path="res://SummerFruit.tscn" id="4_c01mt"]
+[ext_resource type="PackedScene" path="res://AutumnWood.tscn" id="5_nxtc6"]
+[ext_resource type="PackedScene" path="res://WinterWool.tscn" id="6_jlsqs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rarhs"]
+size = Vector2(50, 40)
+
+[node name="Main" type="Node2D"]
+position = Vector2(0, 8)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_rvslj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("2_0bbpv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_rarhs")
+one_way_collision_margin = 0.0
+debug_color = Color(0.38451275, 0.58059007, 0.55008745, 0.41960785)
+
+[node name="SpringWater" parent="." instance=ExtResource("3_0bbpv")]
+position = Vector2(200, 200)
+
+[node name="SummerFruit" parent="." instance=ExtResource("4_c01mt")]
+position = Vector2(400, 200)
+
+[node name="AutumnWood" parent="." instance=ExtResource("5_nxtc6")]
+position = Vector2(200, 400)
+
+[node name="WinterWool" parent="." instance=ExtResource("6_jlsqs")]
+position = Vector2(400, 400)

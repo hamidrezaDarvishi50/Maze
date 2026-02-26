@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://wxajutev5y5d"]
+
+[ext_resource type="Script" uid="uid://b2qdbjpee4vu" path="res://spring_water.gd" id="1_vnpml"]
+[ext_resource type="Texture2D" uid="uid://bv5e1yhp6dmcc" path="res://assets/puzzles/water_icon.png" id="2_i8vsw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dbiyt"]
+radius = 15.0
+
+[node name="SpringWater" type="Area2D"]
+script = ExtResource("1_vnpml")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_i8vsw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1)
+shape = SubResource("CircleShape2D_dbiyt")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

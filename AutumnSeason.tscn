@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://qt3vqln8mlti"]
+
+[ext_resource type="Script" uid="uid://b4elk07p4vb62" path="res://autumn_season.gd" id="1_c5pyl"]
+[ext_resource type="Script" uid="uid://cftoc115vf4j7" path="res://playerMaze.gd" id="2_htvph"]
+[ext_resource type="Texture2D" uid="uid://cdw0n1roccd3w" path="res://assets/puzzles/player_icon.png" id="3_78rrs"]
+[ext_resource type="Texture2D" uid="uid://ded7y6uywbg7p" path="res://assets/puzzles/door.png" id="5_a7e2n"]
+[ext_resource type="PackedScene" path="res://AutumnWood.tscn" id="5_htvph"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_udnxq"]
+size = Vector2(50, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53w74"]
+size = Vector2(15, 49)
+
+[node name="AutumnSeason" type="Node2D"]
+script = ExtResource("1_c5pyl")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_left = -79.0
+offset_top = -29.0
+offset_right = 1396.0
+offset_bottom = 1181.0
+color = Color(0.745808, 0.3207421, 9.62615e-08, 1)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(100, 100)
+script = ExtResource("2_htvph")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("3_78rrs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_udnxq")
+one_way_collision_margin = 0.0
+debug_color = Color(0.38451275, 0.58059007, 0.55008745, 0.41960785)
+
+[node name="ExitDoor" type="Area2D" parent="."]
+position = Vector2(800, 300)
+monitoring = false
+
+[node name="Sprite2D" type="Sprite2D" parent="ExitDoor"]
+position = Vector2(6, 23)
+texture = ExtResource("5_a7e2n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitDoor"]
+position = Vector2(6.5, 22.5)
+shape = SubResource("RectangleShape2D_53w74")
+debug_color = Color(0.25105143, 0.12635595, 0.005053873, 0.41960785)
+
+[node name="AutumnWood" parent="." instance=ExtResource("5_htvph")]
+position = Vector2(400, 300)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InfoPanel" type="Panel" parent="UI"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 320.0
+offset_bottom = 170.0
+
+[node name="SeasonLabel" type="Label" parent="UI/InfoPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 73.0
+offset_bottom = 33.0
+text = "فصل بهار"
+
+[node name="ScoreLabel" type="Label" parent="UI/InfoPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = 50.0
+offset_bottom = 73.0
+text = "امتیاز : 2000"
+
+[node name="ItemsLabel" type="Label" parent="UI/InfoPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 90.0
+offset_right = 93.0
+offset_bottom = 113.0
+text = "آیتم ها : هیچ"
+
+[connection signal="body_entered" from="ExitDoor" to="." method="_on_exit_door_body_entered"]

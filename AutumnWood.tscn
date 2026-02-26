@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b75cupqn6q8at"]
+
+[ext_resource type="Script" uid="uid://c3m5ynk538n58" path="res://autumn_wood.gd" id="1_qpb57"]
+[ext_resource type="Texture2D" uid="uid://dldh0vh20m4et" path="res://Textures/Autumn_Wood.png" id="2_8ou4c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_18356"]
+size = Vector2(30, 10)
+
+[node name="AutumnWood" type="Area2D"]
+script = ExtResource("1_qpb57")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8ou4c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_18356")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

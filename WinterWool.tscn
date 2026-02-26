@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbrthvoycgo5a"]
+
+[ext_resource type="Script" uid="uid://rma2djnnfam7" path="res://winter_wool.gd" id="1_6b2ld"]
+[ext_resource type="Texture2D" uid="uid://djfh5o3xtt2uo" path="res://assets/puzzles/winter_wool.png" id="2_ju4lc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ubrgm"]
+radius = 12.0
+
+[node name="WinterWool" type="Area2D"]
+script = ExtResource("1_6b2ld")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ju4lc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ubrgm")
+debug_color = Color(0.2895396, 0.60289204, 0.5213447, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

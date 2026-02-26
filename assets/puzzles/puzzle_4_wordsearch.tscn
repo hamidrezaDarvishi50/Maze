@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://byjbwhywrltxg"]
+
+[ext_resource type="Script" uid="uid://mjuvc8g1qslo" path="res://scripts/puzzle_4_wordsearch.gd" id="1_obqoo"]
+
+[node name="Puzzle4Wordsearch" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_obqoo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Word Search Puzzle"
+
+[node name="LetterGrid" type="GridContainer" parent="VBoxContainer"]
+layout_direction = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 10
+
+[node name="AnswerInput" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+placeholder_text = "پاسخ"
+alignment = 1
+
+[node name="SubmitButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+text = "ثبت جواب"

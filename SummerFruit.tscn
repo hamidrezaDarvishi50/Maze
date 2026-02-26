@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://x8cg8wje1c0e"]
+
+[ext_resource type="Script" uid="uid://bpjfxb0bgs4pl" path="res://summer_fruit.gd" id="1_tyb14"]
+[ext_resource type="Texture2D" uid="uid://dsaghu4bexns1" path="res://assets/puzzles/summer_fruit.png" id="2_cqsuy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3jmc"]
+size = Vector2(30, 20)
+
+[node name="SummerFruit" type="Area2D"]
+script = ExtResource("1_tyb14")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_cqsuy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_g3jmc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

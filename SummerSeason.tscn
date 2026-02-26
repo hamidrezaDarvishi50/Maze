@@ -1,0 +1,89 @@
+[gd_scene load_steps=9 format=3 uid="uid://cit0w8iwqij7g"]
+
+[ext_resource type="Script" uid="uid://gf8ma5bpbnov" path="res://summer_season.gd" id="1_0qop4"]
+[ext_resource type="Script" uid="uid://cftoc115vf4j7" path="res://playerMaze.gd" id="2_b3p2t"]
+[ext_resource type="Texture2D" uid="uid://cdw0n1roccd3w" path="res://assets/puzzles/player_icon.png" id="3_5qe1k"]
+[ext_resource type="PackedScene" uid="uid://x8cg8wje1c0e" path="res://SummerFruit.tscn" id="5_b3p2t"]
+[ext_resource type="Texture2D" uid="uid://ded7y6uywbg7p" path="res://assets/puzzles/door.png" id="5_yugj3"]
+[ext_resource type="PackedScene" path="res://TimeDiamond.tscn" id="6_b3p2t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_udnxq"]
+size = Vector2(50, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53w74"]
+size = Vector2(15, 49)
+
+[node name="SummerSeason" type="Node2D"]
+script = ExtResource("1_0qop4")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_left = -37.0
+offset_top = -23.0
+offset_right = 1438.0
+offset_bottom = 1187.0
+color = Color(0.74580693, 0.7806738, 0.1324467, 1)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(100, 100)
+script = ExtResource("2_b3p2t")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("3_5qe1k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_udnxq")
+one_way_collision_margin = 0.0
+debug_color = Color(0.38451275, 0.58059007, 0.55008745, 0.41960785)
+
+[node name="ExitDoor" type="Area2D" parent="."]
+position = Vector2(800, 300)
+monitoring = false
+
+[node name="Sprite2D" type="Sprite2D" parent="ExitDoor"]
+position = Vector2(6, 23)
+texture = ExtResource("5_yugj3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitDoor"]
+position = Vector2(6.5, 22.5)
+shape = SubResource("RectangleShape2D_53w74")
+debug_color = Color(0.25105143, 0.12635595, 0.005053873, 0.41960785)
+
+[node name="SummerFruit" parent="." instance=ExtResource("5_b3p2t")]
+position = Vector2(400, 300)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InfoPanel" type="Panel" parent="UI"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 320.0
+offset_bottom = 170.0
+
+[node name="SeasonLabel" type="Label" parent="UI/InfoPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 73.0
+offset_bottom = 33.0
+text = "فصل بهار"
+
+[node name="ScoreLabel" type="Label" parent="UI/InfoPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = 50.0
+offset_bottom = 73.0
+text = "امتیاز : 2000"
+
+[node name="ItemsLabel" type="Label" parent="UI/InfoPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 90.0
+offset_right = 93.0
+offset_bottom = 113.0
+text = "آیتم ها : هیچ"
+
+[node name="TimeDiamond" parent="UI/InfoPanel" instance=ExtResource("6_b3p2t")]
+position = Vector2(600, 593)
+
+[connection signal="body_entered" from="ExitDoor" to="." method="_on_exit_door_body_entered"]

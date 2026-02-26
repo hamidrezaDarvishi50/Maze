@@ -1,0 +1,81 @@
+[gd_scene load_steps=2 format=3 uid="uid://jwfw54le5bec"]
+
+[ext_resource type="Script" uid="uid://8jngoswxvnyc" path="res://puzzle_ui.gd" id="1_scvx3"]
+
+[node name="PuzzleUI" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_scvx3")
+
+[node name="Overlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MainBox" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainBox"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MainBox/VBoxContainer"]
+layout_direction = 3
+layout_mode = 2
+
+[node name="QuestionLabel" type="Label" parent="MainBox/VBoxContainer"]
+layout_direction = 3
+layout_mode = 2
+vertical_alignment = 1
+
+[node name="PuzzleImage" type="TextureRect" parent="MainBox/VBoxContainer"]
+layout_mode = 2
+
+[node name="GameContainer" type="VBoxContainer" parent="MainBox/VBoxContainer"]
+layout_mode = 2
+
+[node name="OptionsGrid" type="HBoxContainer" parent="MainBox/VBoxContainer/GameContainer"]
+layout_mode = 2
+
+[node name="ButtonA" type="Button" parent="MainBox/VBoxContainer/GameContainer/OptionsGrid"]
+layout_mode = 2
+text = "A"
+
+[node name="ButtonB" type="Button" parent="MainBox/VBoxContainer/GameContainer/OptionsGrid"]
+layout_mode = 2
+text = "B"
+
+[node name="ButtonC" type="Button" parent="MainBox/VBoxContainer/GameContainer/OptionsGrid"]
+layout_mode = 2
+text = "C"
+
+[node name="ButtonD" type="Button" parent="MainBox/VBoxContainer/GameContainer/OptionsGrid"]
+layout_mode = 2
+text = "D"
+
+[node name="InputBox" type="HBoxContainer" parent="MainBox/VBoxContainer/GameContainer"]
+layout_mode = 2
+
+[node name="AnswerInput" type="LineEdit" parent="MainBox/VBoxContainer/GameContainer/InputBox"]
+layout_mode = 2
+placeholder_text = "جواب را اینجا بنویسید..."
+
+[node name="SubmitButton" type="Button" parent="MainBox/VBoxContainer/GameContainer/InputBox"]
+custom_minimum_size = Vector2(70, 50)
+layout_mode = 2
+size_flags_stretch_ratio = 13.26
+text = "تایید"
+
+[connection signal="text_submitted" from="MainBox/VBoxContainer/GameContainer/InputBox/AnswerInput" to="." method="_on_submit_button_pressed"]
+[connection signal="pressed" from="MainBox/VBoxContainer/GameContainer/InputBox/SubmitButton" to="." method="_on_submit_button_pressed"]
